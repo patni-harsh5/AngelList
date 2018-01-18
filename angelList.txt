@@ -3,7 +3,7 @@ function apply() {
     $(".browse_startups_table_row:visible").first().click();
   }
   $(".add-note-button > a.g-button.blue:visible").first().click();
-  $(".interested-note:visible").first().val(“I hacked AngelList to auto-apply to jobs. That’s why you should hire me.“);
+  $(".interested-note:visible").first().val("I hacked AngelList to auto-apply to jobs. That’s why you should hire me.");
   $("a.g-button.blue.interested-with-note-button:visible").first().click();
   $(".js-done").click();
   $("html, body").animate({ scrollTop: $(document).height()-$(window).height() });
