@@ -6,9 +6,11 @@ function apply() {
   $(".interested-note:visible").first().val("I hacked AngelList to auto-apply to jobs. That’s why you should hire me.");
   $("a.g-button.blue.interested-with-note-button:visible").first().click();
   $(".js-done").click();
-
+  $("html, body").animate({ scrollBottom: $(document).height()-$(window).height() });
+  setTimeout(apply, 4000);
 }
 
+// or if that doesn't work
 
 (function() {
 
@@ -77,8 +79,6 @@ function apply() {
         .each( function(idx, button) { $(button).click(); });
 
     });
-  $("html, body").animate({ scrollBottom: $(document).height()-$(window).height() });
-  setTimeout(apply, 4000);
     // Print all of the company and job info to the console.
     return jobInfo;
 })();
