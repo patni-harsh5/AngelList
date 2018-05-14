@@ -1,18 +1,13 @@
-function apply() {
-  if ($(".add-note-button > a.g-button.blue:visible").length == 0) {
-    $(".browse_startups_table_row:visible").first().click();
-  }
-  $(".add-note-button > a.g-button.blue:visible").first().click();
-  $(".interested-note:visible").first().val("I hacked AngelList to auto-apply to jobs. That’s why you should hire me.");
-  $("a.g-button.blue.interested-with-note-button:visible").first().click();
-  $(".js-done").click();
-  $("html, body").animate({ scrollBottom: $(document).height()-$(window).height() });
-  setTimeout(apply, 4000);
-}
 
-// or if that doesn't work
-
-function() {
+function scrollToBottom(){
+      bottom = document.body.scrollHeight;
+      current = window.innerHeight+ document.body.scrollTop;
+      if((bottom-current) >0){
+        window.scrollTo(0, bottom);
+        setTimeout ( 'scrollToBottom()', 1000 );
+      }
+      
+(function() {
 
   var placeholderString,
   placeholderWords,
@@ -83,3 +78,5 @@ function() {
     // Print all of the company and job info to the console.
     return jobInfo;
 })();
+    };
+    scrollToBottom();
