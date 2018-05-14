@@ -6,6 +6,79 @@ function apply() {
   $(".interested-note:visible").first().val("I hacked AngelList to auto-apply to jobs. That’s why you should hire me.");
   $("a.g-button.blue.interested-with-note-button:visible").first().click();
   $(".js-done").click();
-  $("html, body").animate({ scrollTop: $(document).height()-$(window).height() });
-  setTimeout(apply, 4000);
+
 }
+
+
+(function() {
+
+  var placeholderString,
+  placeholderWords,
+  contactName,
+  companyName,
+  customNote,
+  jobDescription,
+  jobUrl,
+  jobInfo,
+  str = '';
+
+  $('.job_listings')
+
+    .filter(function(_, elem) {
+      return ($(elem).attr('data-force-note') );
+    })
+    .each(function(_, elem) {
+
+      // Find the URL for each job listing.
+      $(elem)
+          .find('.top a[href]')
+          .each( function(idx, value) { str += $(value).attr('href') + "\n"; });
+
+      // Get the placeholder note so we can pluck the names of the contact and company.
+      placeholderString = $(elem)
+        .find('.interested-note').attr('placeholder');
+
+      // Split placeholder string into words:
+      placeholderWords = placeholderString.split(' ');
+
+      // Pluck contact name
+      contactName = placeholderWords[4];
+
+      // Pluck company name
+      companyName = $(elem).find('.startup-link').text();
+
+      // Build personalized note
+      customNote = "Hello " + contactName + "! I'm a mathematician, I'd like to help solve some of your problems at" + companyName + ". Let's chat!";
+
+      // .header-info .tagline (text)
+      jobDescription = $(elem).find('.tagline').text();
+
+      // .header-info .startup-link (href attr)
+      jobUrl = $(elem).find('.startup-link').attr('href');
+
+      // Compile and format job information
+      jobInfo = companyName + '\n' + jobDescription + '\n' + str + '\n\n';
+
+      // Get job data for your own records
+      console.log(jobInfo);
+
+      // Log out custom note to verify syntax.
+      // console.log(customNote + '\n');
+
+      // Add your custom note.
+      // *** (Comment these lines out to debug.)
+      $(elem)
+        .find('.interested-note').text( customNote );
+
+      // Fire in the hole!
+      // *** (Comment these lines out to debug.)
+      $(elem)
+        .find('.interested-with-note-button')
+        .each( function(idx, button) { $(button).click(); });
+
+    });
+  $("html, body").animate({ scrollBottom: $(document).height()-$(window).height() });
+  setTimeout(apply, 4000);
+    // Print all of the company and job info to the console.
+    return jobInfo;
+})();
