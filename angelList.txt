@@ -12,7 +12,7 @@ function apply() {
 
 // or if that doesn't work
 
-(function() {
+function() {
 
   var placeholderString,
   placeholderWords,
@@ -50,7 +50,7 @@ function apply() {
       companyName = $(elem).find('.startup-link').text();
 
       // Build personalized note
-      customNote = "Hello " + contactName + "! I'm a mathematician, I'd like to help solve some of your problems at" + companyName + ". Let's chat!";
+      customNote = "Hi " + contactName + "! I'm a mathematician. I solve problems. I'd like to contribute my skills to " + companyName + ". Let's chat!";
 
       // .header-info .tagline (text)
       jobDescription = $(elem).find('.tagline').text();
@@ -79,6 +79,7 @@ function apply() {
         .each( function(idx, button) { $(button).click(); });
 
     });
+
     // Print all of the company and job info to the console.
     return jobInfo;
 })();
